@@ -2,8 +2,6 @@
 
 给 AI 写的东西去去味，中文英文都能用。
 
-我觉得这版对 GPT 的效果特别好，就把它从 [TokenRouter](https://github.com/TokenFlux/TokenRouter) 里单独拿了出来。Codex、Claude Code 都可以用。
-
 里面有 22 条规则，专门改那些看着眼熟、读着费劲的写法：开头来一句“值得注意的是”，动不动“不是……而是……”，注释里堆满“边界”“契约”“语义”，说完还要再总结一遍。每条规则命中一次就改，具体写在 [SKILL.md](SKILL.md) 里。
 
 ## 安装
@@ -57,9 +55,3 @@ git clone https://github.com/smartcmd/humanizer.git ~/.claude/skills/humanizer
 改写后：
 
 > The service caches results so later requests can reuse them.
-
-## 来源
-
-基于 [blader/humanizer](https://github.com/blader/humanizer) 3.0.0 修改，补充了中文句式和代码注释的规则。上游参考了 Wikipedia 的 “Signs of AI writing”。
-
-[MIT License](LICENSE)。
