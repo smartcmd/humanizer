@@ -4,14 +4,13 @@ description: 去掉模型写作中的 AI 腔，适用于中文和英文的写作
 license: MIT
 metadata:
   version: "1.0.0"
-  upstream: "blader/humanizer 3.0.0"
 ---
 
 # Humanizer
 
 把文字写得具体、直接，让读者读得懂。写作时按这些规则组织句子，改写时保留材料中的事实、语气和作者立场。
 
-本技能从 TokenRouter 的 humanizer 改进版整理而来，上游是 blader/humanizer 3.0.0。22 条规则逐条检查，命中一次就改。技术文本、单次出现和表面中性的措辞同样需要检查。
+22 条规则逐条检查，命中一次就改。技术文本、单次出现和表面中性的措辞同样需要检查。
 
 ## 模型文字为什么有股味
 
@@ -349,7 +348,3 @@ The service caches results so later requests can reuse them.
 形态：标题下第一句只是把标题换个说法再说一遍。
 
 改法：删掉这句，从实际内容写起。
-
-## 来源
-
-基于 [blader/humanizer](https://github.com/blader/humanizer) 3.0.0，经过 [TokenRouter](https://github.com/TokenFlux/TokenRouter) 的中文写作规则改编。上游参考了 Wikipedia 的 “Signs of AI writing”。许可见 [LICENSE](LICENSE)。
