@@ -1,55 +1,46 @@
 # humanizer
 
-适用于 Codex、Claude Code 等 Agent 的中英文写作技能。写文章、邮件、文案、技术文档和代码注释时，逐句检查 AI 腔。
+给 AI 写的东西去去味，中文英文都能用。
 
-按作者的使用体验，这套规则对 GPT 的效果特别好。它重点处理 GPT 常见的否定式对比、抽象措辞和模板句，Claude Code 也可以使用。
+我觉得这版对 GPT 的效果特别好，就把它从 [TokenRouter](https://github.com/TokenFlux/TokenRouter) 里单独拿了出来。Codex、Claude Code 都可以用。
 
-这份技能从 TokenRouter 仓库的 humanizer 改进版整理而来，保留了 22 条写作规则。它集中处理否定式对比、空泛表态、写给审查者看的注释、架构黑话、模板句和聊天残留。每条规则单独生效，命中一次就改。
+里面有 22 条规则，专门改那些看着眼熟、读着费劲的写法：开头来一句“值得注意的是”，动不动“不是……而是……”，注释里堆满“边界”“契约”“语义”，说完还要再总结一遍。每条规则命中一次就改，具体写在 [SKILL.md](SKILL.md) 里。
 
 ## 安装
 
-Codex 用户级安装：
+Codex：
 
 ```bash
 git clone https://github.com/smartcmd/humanizer.git ~/.agents/skills/humanizer
 ```
 
-Claude Code 用户级安装：
+Claude Code：
 
 ```bash
 git clone https://github.com/smartcmd/humanizer.git ~/.claude/skills/humanizer
 ```
 
-目录里已有同名技能时，先把旧目录移到技能目录之外备份，再安装本版本。其他客户端按其技能目录约定放置本仓库。技能入口是 [SKILL.md](SKILL.md)，规则使用中文编写，适用于中英文文字。
+装过同名技能的话，先把旧文件夹移出去备份，再运行上面的命令。
 
-目录约定见 [Codex 官方技能文档](https://learn.chatgpt.com/docs/build-skills)和 [Claude Code 官方技能文档](https://code.claude.com/docs/en/skills)。
+其他安装方式可以看 [Codex 文档](https://learn.chatgpt.com/docs/build-skills)和 [Claude Code 文档](https://code.claude.com/docs/en/skills)。
 
 ## 使用
 
-在 Codex 中用 `$humanizer`，在 Claude Code 中用 `/humanizer` 调用。也可以在任务里直接要求使用 humanizer：
+在 Codex 里用 `$humanizer`，在 Claude Code 里用 `/humanizer`。把要改的文字一起发过去就行：
 
 ```text
-使用 humanizer 改写下面这段文字，保留事实和作者立场：
+用 humanizer 改一下这段话：
 
 [粘贴原文]
 ```
 
-也可以在写作任务里直接指定：
+想让它平时写代码也遵守这些规则，可以在项目的 `AGENTS.md` 或 `CLAUDE.md` 里加一句：
 
 ```text
-使用 humanizer，根据这些要点写一封项目进展邮件。
+写注释、文档、界面文案和提交信息时，使用 humanizer，写完按技能里的规则检查一遍。
 ```
 
-在代码仓库里使用时，可以在 Agent 指令中要求：
-
-```text
-编写或修改注释、文档、界面文案和提交信息时，使用 humanizer 技能。
-交付前按技能的 22 条规则检查本次新增和修改的文字。
-```
-
-客户端通过 `SKILL.md` 加载规则。`agents/openai.yaml` 提供技能名称、简介和调用提示。
-
-## 改写示例
+## 举个例子
 
 原文：
 
@@ -59,9 +50,7 @@ git clone https://github.com/smartcmd/humanizer.git ~/.claude/skills/humanizer
 
 > 这个函数读取本地缓存，未命中时返回空字符串。
 
-改写保留了缓存未命中时的返回值。事实中的限制、风险和不确定性都需要准确表达。
-
-原文：
+英文也一样：
 
 > It is important to note that the service boasts a robust caching layer, ensuring seamless access to previously fetched results.
 
@@ -69,14 +58,8 @@ git clone https://github.com/smartcmd/humanizer.git ~/.claude/skills/humanizer
 
 > The service caches results so later requests can reuse them.
 
-## 规则的用法
+## 来源
 
-先保留材料中的事实，再按要点重写整句。代码标识符、命令、路径、协议字段和引用原文照原样书写。用户指定的语言、文体、篇幅和交付格式决定本次任务的写法。
+基于 [blader/humanizer](https://github.com/blader/humanizer) 3.0.0 修改，补充了中文句式和代码注释的规则。上游参考了 Wikipedia 的 “Signs of AI writing”。
 
-交付前逐条检查全部规则。Git 仓库中的文本可以先用技能提供的命令筛选，随后通读全文。
-
-## 来源与许可
-
-上游是 [blader/humanizer](https://github.com/blader/humanizer) 3.0.0，规则参考了 Wikipedia 的 “Signs of AI writing”。[TokenRouter](https://github.com/TokenFlux/TokenRouter) 的改进版补充了中文句式、代码注释和提交信息的规则，humanizer 在此基础上整理为通用技能。
-
-采用 [MIT 许可](LICENSE)，保留上游版权声明。
+[MIT License](LICENSE)。
