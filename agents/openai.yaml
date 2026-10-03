@@ -1,0 +1,4 @@
+interface:
+  display_name: "Humanizer"
+  short_description: "去掉中英文写作中的 AI 腔，逐句改写空泛表态、模板句和抽象词"
+  default_prompt: "使用 $humanizer 改写这段文字，保留事实、作者立场和确定程度。"
